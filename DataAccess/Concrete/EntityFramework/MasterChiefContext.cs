@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=192.168.1.12;Database=MASTERCHIEFPC;User Id=masterchief;Password=f_sa%Vd@BqYcO5!tmKX-t!D&");
+            optionsBuilder.UseSqlServer("Server=192.168.1.12;Database=MASTERCHIEFPC;User Id=masterchief;Password=f_sa!tmKX-t!D&");
         }
 
         public DbSet<Category> Categories { get; set; }
