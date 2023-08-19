@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CrossCuttingConcerns\Caching\Microsoft\" />
+    <Folder Include="CrossCuttingConcerns\Logging\Log4Net\Layouts\" />
+    <Folder Include="CrossCuttingConcerns\Logging\Log4Net\Loggers\" />
+    <Folder Include="CrossCuttingConcerns\Validation\FluentValidation\" />
+    <Folder Include="DataAccess\EntityFramework\" />
+    <Folder Include="DependencyResolvers\" />
+    <Folder Include="Extension\" />
+    <Folder Include="Utilities\Exceptions\" />
+    <Folder Include="Utilities\NewFolder\" />
+  </ItemGroup>
+
+</Project>
