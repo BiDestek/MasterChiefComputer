@@ -6,6 +6,7 @@
     <img src="https://github.com/BiDestek/MasterChiefComputer/blob/d6c2e6dec75d7da175ed495db70cbb4289f85246/MasterChiefLogo2.png">
   </a>
   <h2 align="center">Master Chief Computer E-Commerce Project</h2>
+  <h2 align="center">Gaming PC is our bussiness!</h2>
   <p>
     E-commerce Project With N-Layer Architecture.    
   </p>
@@ -35,6 +36,9 @@
         <li>IoC</li>
       </ul>      
       <ul>
+        <li>Log Aspect</li>
+      </ul>
+	<ul>
         <li>Cache Aspect</li>
       </ul>
       <ul>
