@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -28,7 +30,7 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.add,admin")]
         [ValidationAspect(typeof(CategoryValidator), Priority = 1)]
         [CacheRemoveAspect("ICategoryService.Get")]
@@ -39,7 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(CategoryMessages.Added);
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.add,admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         [CacheRemoveAspect("ICategoryService.Get")]
@@ -62,7 +64,7 @@ namespace Business.Concrete
             return new SuccessResult(CategoryMessages.Added);
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.add,admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         [CacheRemoveAspect("ICategoryService.Get")]
@@ -72,7 +74,7 @@ namespace Business.Concrete
             return new SuccessResult(CategoryMessages.Updated);
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.add,admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         [CacheRemoveAspect("ICategoryService.Get")]
@@ -82,7 +84,7 @@ namespace Business.Concrete
             return new SuccessResult(CategoryMessages.Updated);
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.del,admin")]
         [CacheRemoveAspect("ICategoryService.Get")]
         public IResult Delete(Category category)
@@ -91,7 +93,7 @@ namespace Business.Concrete
             return new SuccessResult(CategoryMessages.Deleted);
         }
 
-
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("category.del,admin")]
         [CacheRemoveAspect("ICategoryService.Get")]
         public IResult DeleteAsync(Category category)

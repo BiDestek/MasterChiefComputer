@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -29,6 +31,7 @@ namespace Business.Concrete
             _orderDal = orderDal;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.list,admin")]
         [ValidationAspect(typeof(OrderValidator), Priority = 1)]
         [CacheRemoveAspect("IOrderService.Get")]
@@ -38,6 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.list,admin")]
         [ValidationAspect(typeof(OrderValidator))]
         [CacheRemoveAspect("IOrderService.Get")]
@@ -59,6 +63,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.add,admin")]
         [ValidationAspect(typeof(OrderValidator))]
         [CacheRemoveAspect("IOrderService.Get")]
@@ -68,6 +73,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.add,admin")]
         [ValidationAspect(typeof(OrderValidator))]
         [CacheRemoveAspect("IOrderService.Get")]
@@ -77,6 +83,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.del,admin")]
         [CacheRemoveAspect("IOrderService.Get")]
         public IResult Delete(Order order)
@@ -85,6 +92,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("order.del,admin")]
         [CacheRemoveAspect("IOrderService.Get")]
         public IResult DeleteAsync(Order order)

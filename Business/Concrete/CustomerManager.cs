@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -28,6 +30,7 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.add,admin")]
         [ValidationAspect(typeof(CustomerValidator), Priority = 1)]
         [CacheRemoveAspect("ICustomerService.Get")]
@@ -38,6 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(CustomerMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.add,admin")]
         [ValidationAspect(typeof(CustomerValidator))]
         [CacheRemoveAspect("ICustomerService.Get")]
@@ -59,6 +63,7 @@ namespace Business.Concrete
             throw new Exception(CustomerMessages.CustomerNameInvalid);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.add,admin")]
         [ValidationAspect(typeof(CustomerValidator))]
         [CacheRemoveAspect("ICustomerService.Get")]
@@ -68,6 +73,7 @@ namespace Business.Concrete
             return new SuccessResult(CustomerMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.add,admin")]
         [ValidationAspect(typeof(CustomerValidator))]
         [CacheRemoveAspect("ICustomerService.Get")]
@@ -77,6 +83,7 @@ namespace Business.Concrete
             return new SuccessResult(CustomerMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.del,admin")]
         [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Delete(Customer customer)
@@ -85,6 +92,7 @@ namespace Business.Concrete
             return new SuccessResult(CustomerMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("customer.del,admin")]
         [CacheRemoveAspect("ICustomerService.Get")]
         public IResult DeleteAsync(Customer customer)

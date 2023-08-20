@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.ForBusiness;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -31,6 +33,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator), Priority = 1)]
         [CacheRemoveAspect("IProductService.Get")]
@@ -48,6 +51,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
@@ -70,6 +74,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
@@ -80,6 +85,7 @@ namespace Business.Concrete
             return new Result(true, ProductMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
@@ -89,6 +95,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.del,admin")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Delete(Product product)
@@ -97,6 +104,7 @@ namespace Business.Concrete
             return new Result(true, ProductMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("product.del,admin")]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult DeleteAsync(Product product)

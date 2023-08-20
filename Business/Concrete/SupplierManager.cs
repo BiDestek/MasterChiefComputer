@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -28,6 +30,7 @@ namespace Business.Concrete
             _supplierDal = supplierDal;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.add,admin")]
         [ValidationAspect(typeof(SupplierValidator), Priority = 1)]
         [CacheRemoveAspect("ISupplierService.Get")]
@@ -37,6 +40,7 @@ namespace Business.Concrete
             return new SuccessResult(SupplierMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.add,admin")]
         [ValidationAspect(typeof(SupplierValidator))]
         [CacheRemoveAspect("ISupplierService.Get")]
@@ -58,6 +62,7 @@ namespace Business.Concrete
             return new SuccessResult(SupplierMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.add,admin")]
         [ValidationAspect(typeof(SupplierValidator))]
         [CacheRemoveAspect("ISupplierService.Get")]
@@ -67,6 +72,7 @@ namespace Business.Concrete
             return new SuccessResult(SupplierMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.add,admin")]
         [ValidationAspect(typeof(SupplierValidator))]
         [CacheRemoveAspect("ISupplierService.Get")]
@@ -76,6 +82,7 @@ namespace Business.Concrete
             return new SuccessResult(SupplierMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.del,admin")]
         [CacheRemoveAspect("ISupplierService.Get")]
         public IResult Delete(Supplier supplier)
@@ -84,6 +91,7 @@ namespace Business.Concrete
             return new SuccessResult(SupplierMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("supplier.del,admin")]
         [CacheRemoveAspect("ISupplierService.Get")]
         public IResult DeleteAsync(Supplier supplier)

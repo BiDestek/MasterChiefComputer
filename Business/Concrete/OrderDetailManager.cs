@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -28,6 +30,7 @@ namespace Business.Concrete
             _orderDetailDal = orderDetailDal;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.add,admin")]
         [ValidationAspect(typeof(OrderDetailValidator), Priority = 1)]
         [CacheRemoveAspect("IOrderDetailService.Get")]
@@ -37,6 +40,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderDetailMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.add,admin")]
         [ValidationAspect(typeof(OrderDetailValidator))]
         [CacheRemoveAspect("IOrderDetailService.Get")]
@@ -58,6 +62,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderDetailMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.add,admin")]
         [ValidationAspect(typeof(OrderDetailValidator))]
         [CacheRemoveAspect("IOrderDetailService.Get")]
@@ -67,6 +72,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderDetailMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.add,admin")]
         [ValidationAspect(typeof(OrderDetailValidator))]
         [CacheRemoveAspect("IOrderDetailService.Get")]
@@ -76,6 +82,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderDetailMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.del,admin")]
         [CacheRemoveAspect("IOrderDetailService.Get")]
         public IResult Delete(OrderDetail orderDetail)
@@ -84,6 +91,7 @@ namespace Business.Concrete
             return new SuccessResult(OrderDetailMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("orderdetail.del,admin")]
         [CacheRemoveAspect("IOrderDetailService.Get")]
         public IResult DeleteAsync(OrderDetail orderDetail)

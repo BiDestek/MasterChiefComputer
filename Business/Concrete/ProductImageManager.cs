@@ -12,6 +12,8 @@ using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Performance;
 using Core.Aspect.Autofac.Transaction;
 using Core.Aspect.Autofac.Validation;
+using Core.Aspect.Logging;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.ForBusiness;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
@@ -31,6 +33,7 @@ namespace Business.Concrete
             _productImageDal = productImageDal;
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.add,admin")]
         [ValidationAspect(typeof(ProductImageValidator), Priority = 1)]
         [CacheRemoveAspect("IProductImageService.Get")]
@@ -49,6 +52,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductImagesMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.add,admin")]
         [ValidationAspect(typeof(ProductImageValidator))]
         [CacheRemoveAspect("IProductImageService.Get")]
@@ -72,6 +76,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductImagesMessages.Added);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.add,admin")]
         [ValidationAspect(typeof(ProductImageValidator))]
         [CacheRemoveAspect("IProductImageService.Get")]
@@ -88,6 +93,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductImagesMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.add,admin")]
         [ValidationAspect(typeof(ProductImageValidator))]
         [CacheRemoveAspect("IProductImageService.Get")]
@@ -99,6 +105,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductImagesMessages.Updated);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.del,admin")]
         [CacheRemoveAspect("IProductImageService.Get")]
         public IResult Delete(ProductImage productImage)
@@ -108,6 +115,7 @@ namespace Business.Concrete
             return new SuccessResult(ProductImagesMessages.Deleted);
         }
 
+        [LogAspect(typeof(FileLogger))]
         [SecuredOperation("productimage.del,admin")]
         [CacheRemoveAspect("IProductImageService.Get")]
         public IResult DeleteAsync(ProductImage productImage)
