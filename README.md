@@ -36,7 +36,7 @@
         <li>IoC</li>
       </ul>      
       <ul>
-        <li>Log Aspect</li>
+        <li>Log Aspect(Apache Log4Net)</li>
       </ul>
 	<ul>
         <li>Cache Aspect</li>
